@@ -10,7 +10,7 @@ zomato.use(helmet());
 zomato.use(cors());
 
 zomato.get("/", (request, response) => 
-    response.json({message: "SetUp Success Yay!!"})
+    response.json({message: "SetUp Done!!"})
 );
 
 zomato.listen(4000, ()=> console.log("Server is up and running!!"))
