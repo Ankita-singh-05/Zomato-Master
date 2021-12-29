@@ -8,7 +8,7 @@ const ImageSchema = new mongoose.Schema({
     ]
 },
     {
-        timestamps: true
+        timestamps: true //to get the time whenever the image will be added
     }
 );
 
