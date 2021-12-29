@@ -1,0 +1,11 @@
+##API
+
+- Auth - get and post request 
+- Food - get
+- Restaurants - get
+- Menu - get
+- Order - post
+- Payments -> Razorpay API
+- Reviews - post
+- User - get and post
+- Image - get and post
