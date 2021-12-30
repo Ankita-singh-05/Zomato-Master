@@ -39,10 +39,12 @@ Router.post("/signup", async (req, res) => {
         // JWT Token
         const token = jwt.sign({user: {fullName, email}}, "ZomatoApp");
 
+        // Status code 200 -- The HTTP 200 OK success status response code indicates that the request has succeeded.
         return res.status(200).json({token, status: "Success"});
 
     } catch (error) {
-        return res.status(500).json({error: console.error(.message)})
+        // Status code 500 -- HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code
+        return res.status(500).json({error: console(error.message)})
     }
 });
 
