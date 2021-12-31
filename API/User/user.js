@@ -26,12 +26,12 @@ Router.get("/:_id", async (req, res) => {
 /* 
 Route     /update
 Des       update an user data
-Params    userID
+Params    _userID
 Access    Public
 Method    PUT
 */
 
-Router.put("/update/:userID", async (req, res) => {
+Router.put("/update/:_userID", async (req, res) => {
     try {
         const { userID } = req.params;
         const { userData } = req.body;
@@ -43,7 +43,7 @@ Router.put("/update/:userID", async (req, res) => {
             {new: true}
         );
 
-        return res.json({user: updateUserData});
+        return res.status(200).json({user: updateUserData});
     } catch (error) {
         return res.status(500).json({error: error.message});
     }
