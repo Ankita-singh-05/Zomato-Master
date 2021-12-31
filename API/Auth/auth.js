@@ -4,6 +4,9 @@ import bcrypt from "bcryptjs";
 //Models
 import { UserModel } from "../../Database/user/user";
 
+//Validations
+import { ValidateSignup, ValidateSignin } from "../../Validation/auth";
+
 const Router = express.Router();
 
 /*
@@ -16,6 +19,7 @@ const Router = express.Router();
 
 Router.post("/signup", async (req, res) => {
     try {
+        await ValidateSignup(req.body.credentials);
         const {email, password, fullName, phoneNumber} = req.body.credentials;
 
         const checkUserByEmail = await UserModel.findOne({email});
@@ -52,4 +56,24 @@ Router.post("/signup", async (req, res) => {
 // xyz333- hgfrhj#$%5 - jhf2345&*89 - jfhj - jhr... 
 // xyz333- hgfrhj#$%5 ----> 1 salt
 // xyz333- hgfrhj#$%5 - jhf2345&*89 ---> 2 salt
+
+/*
+        Route   /signin
+        Des     Signin using email and password
+        Params  None
+        Access  Public
+        Method  POST
+*/
+Router.post("/signin", async (req, res) => {
+    try {
+        await ValidateSignin(req.body.credentials);
+        const user = await UserModel.findByEmailAndPassword(
+            req.body.credentials
+        );
+        const token = user.generateJwtToken();
+        return res.status(200).json({token, status: "Success"})
+    } catch (error) {
+        return res.status(500).json({error: error.message})
+    }
+});
 
