@@ -1,4 +1,5 @@
 import express from "express";
+import AWS from "aws-sdk";
 
 import { ImageModel } from "../../Database/allModels";
 
